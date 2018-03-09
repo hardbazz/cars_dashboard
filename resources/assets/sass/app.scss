@@ -1,0 +1,32 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  /*background-image: url('http://localhost:8000/storage/background.jpg');*/
+  /*background-position: center 40%;*/
+  /*background-repeat: no-repeat;*/
+}
+
+ul li {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.buttons {
+  margin-top: 25px;
+}
+
+.buttons {
+  form {
+    position: relative;
+    bottom: 34px;
+    left: 195px;
+  }
+}
