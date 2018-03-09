@@ -31,6 +31,12 @@
         .has-feedback .form-control {
             padding-right: 12px;
         }
+
+        .carname a {
+            color: #636b6f;
+            text-decoration: underline;
+            font-weight: 700;
+        }
     </style>
 
 </head>

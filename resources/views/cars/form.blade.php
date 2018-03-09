@@ -18,6 +18,11 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('year_build', 'Year build') !!}
+    {!! Form::number('year_build', old('year_build', $car->year_build), array('class' => 'form-control')) !!}
+</div>
+
+<div class="form-group">
     {!! Form::label('bodytype', 'Body type') !!}
 
     <select name="bodytype" class="form-control">
@@ -35,11 +40,6 @@
             <option value="{{ $fuel->id }}" @if($car->fuel == $fuel->id) {{ "selected" }} @endif> {{ ucfirst($fuel->name) }} </option>
         @endforeach
     </select>
-</div>
-
-<div class="form-group">
-{!! Form::label('weight', 'Weight') !!}
-{!! Form::number('weight', old('weight', $car->weight), array('class' => 'form-control')) !!}
 </div>
 
 <div id="accordion" role="tablist" aria-multiselectable="true">
@@ -90,8 +90,8 @@
         </div>
 
         <div class="form-group">
-        {!! Form::label('year_build', 'Year build') !!}
-        {!! Form::number('year_build', old('year_build', $car->year_build), array('class' => 'form-control')) !!}
+        {!! Form::label('weight', 'Weight') !!}
+        {!! Form::number('weight', old('weight', $car->weight), array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">

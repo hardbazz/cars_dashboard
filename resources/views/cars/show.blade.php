@@ -24,6 +24,10 @@
                 <td class="fuel">{!! ucfirst($car->fuelname) !!}</td>
             </tr>
             <tr>
+                <th>Year build</th>
+                <td>{!! $car->year_build !!}</td>
+            </tr>
+            <tr>
                 <th>Weight</th>
                 <td>{!! $car->weight !!} kg</td>
             </tr>
@@ -35,41 +39,37 @@
                 <th>Acceleration (0 - 100)</th>
                 <td>{!! $car->acceleration !!} sec.</td>
             </tr>
-            <tr class="top_speed">
+            <tr>
                 <th>Top speed</th>
                 <td>{!! $car->top_speed !!} km/h</td>
             </tr>
             <tr>
                 <th>Mileage</th>
-                <td class="milage">{!! number_format($car->mileage,0,",",".") !!} km</td>
+                <td>{!! number_format($car->mileage,0,",",".") !!} km</td>
             </tr>
             <tr>
                 <th>Color</th>
-                <td class="color">{!! $car->color !!}</td>
+                <td>{!! $car->color !!}</td>
             </tr>
             <tr>
                 <th>Doors</th>
-                <td class="doors">{!! $car->doors !!}</td>
+                <td>{!! $car->doors !!}</td>
             </tr>
             <tr>
                 <th>Gears</th>
-                <td class="gears">{!! $car->gears !!}</td>
+                <td>{!! $car->gears !!}</td>
             </tr>
             <tr>
                 <th>Transmission</th>
-                <td class="transmission">{!! ucfirst($car->transmission) !!}</td>
-            </tr>
-            <tr>
-                <th>Year build</th>
-                <td class="year_build">{!! $car->year_build !!}</td>
+                <td>{!! ucfirst($car->transmission) !!}</td>
             </tr>
             <tr>
                 <th>License plate</th>
-                <td class="license_plate">{!! $car->license_plate !!}</td>
+                <td>{!! $car->license_plate !!}</td>
             </tr>
             <tr>
                 <th>Horsepower</th>
-                <td class="horsepower">{!! $car->horsepower !!} pk</td>
+                <td>{!! $car->horsepower !!} pk</td>
             </tr>
         </table>
 

@@ -12,9 +12,9 @@
             <th>#</th>
             <th>Brand</th>
             <th>Model</th>
+            <th>Year</th>
             <th>Body type</th>
             <th>Fuel</th>
-            <th>Weight</th>
             <th></th>
         </tr>
         </thead>
@@ -24,11 +24,11 @@
 
                     <tr data-id="{{ $car->id }}">
                         <td>{{ $key+1 }}</td>
-                        <td class="carname" id="name_{{ $car->id }}">{{ ucfirst($car->carname) }}</td>
+                        <td class="carname" id="name_{{ $car->id }}"><a href="/cars/{{ $car->id }}">{{ ucfirst($car->carname) }}</a></td>
                         <td class="carmodel" id="model_{{ $car->id }}">{{ ucfirst($car->model) }}</td>
+                        <td class="caryear" id="year_{{ $car->id }}">{{ $car->year_build }} </td>
                         <td class="carbodytype" id="bodytype_{{ $car->id }}">{{ ucfirst($car->bodyname) }}</td>
                         <td class="carfuel" id="fuel_{{ $car->id }}">{{ ucfirst($car->fuelname) }}</td>
-                        <td class="carweight" id="weight_{{ $car->id }}">{{ $car->weight }} kg</td>
                         <td>
                             <button class="btn btn-warning changeButton" id="clickToChange_{{ $car->id }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                             <a href="#" data-popup-open="popup-1" class="btn btn-info car_info" id="car_info_{{ $car->id }}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a>
@@ -47,7 +47,7 @@
     <div class="popup" data-popup="popup-1">
         <div class="popup-inner">
 
-            <h2 id="car_name"></h2>
+            <h2 id="model"></h2>
 
             <table class="table table-striped">
                <thead>
@@ -79,8 +79,8 @@
                     <td id="transmission"></td>
                 </tr>
                 <tr>
-                    <th>Year</th>
-                    <td id="year_build"></td>
+                    <th>Weight</th>
+                    <td id="weight"></td>
                 </tr>
                 <tr>
                     <th>Horsepower</th>
@@ -115,17 +115,17 @@
             var that = this;
             $.get('api/cars/'+id)
                 .then(function(data){
-                    console.log(this);
+                    //console.log(this);
 
-                    $("#car_name").html(data.brand + " " + data.model);
-                    $("#top_speed").html(data.top_speed);
-                    $("#mileage").html(data.mileage);
+                    $("#model").html("Model: "+ data.model);
+                    $("#top_speed").html(data.top_speed + " km/h");
+                    $("#mileage").html(data.mileage + " km");
                     $("#color").html(data.color);
                     $("#doors").html(data.doors);
                     $("#gears").html(data.gears);
                     $("#transmission").html(data.transmission);
-                    $("#year_build").html(data.year_build);
-                    $("#horsepower").html(data.horsepower);
+                    $("#weight").html(data.weight + " kg");
+                    $("#horsepower").html(data.horsepower + " pk");
 
                     var targeted_popup_class = jQuery(that).attr('data-popup-open');
                     $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
@@ -134,7 +134,7 @@
                         window.location = "/cars/" + id + "/edit/";
                     });
 
-                    console.log(data);
+                    //console.log(data);
                 })
         });
 
@@ -161,8 +161,8 @@
                 // Replace fuel with edit field
                 $("#fuel_{{ $car->id }}").replaceWith("<td class='carfuel'><div class='form-group'><form method='POST' action='{{ url('/') }}' class='' accept-charset='UTF-8'><input name='_method' type='hidden' value='PATCH'><input name='_token' type='hidden' value='{{ csrf_token() }}'><input type='hidden' value='{{ $car->id }}'><select name='fuel' class='form-control input-fuel' required>@foreach($fuels as $fuel) <option value='{{ $fuel->id }}' @if($car->fuel == $fuel->id)  {{ "selected" }} @endif> {{ ucfirst($fuel->name) }} </option> @endforeach</form></div></td>");
 
-                // Replace weight with edit field
-                $("#weight_{{ $car->id }}").replaceWith("<td class='carweight'><div class='form-group'><form method='POST' action='{{ url('/') }}' class='' accept-charset='UTF-8'><input name='_method' type='hidden' value='PATCH'><input name='_token' type='hidden' value='{{ csrf_token() }}'><input type='hidden' value='{{ $car->id }}'><input type='text' name='model' size='2' class='form-control input-weight' value='{{ ucfirst($car->weight) }}' required></form></div></td>");
+                // Replace year with edit field
+                $("#year_{{ $car->id }}").replaceWith("<td class='caryear'><div class='form-group'><form method='POST' action='{{ url('/') }}' class='' accept-charset='UTF-8'><input name='_method' type='hidden' value='PATCH'><input name='_token' type='hidden' value='{{ csrf_token() }}'><input type='hidden' value='{{ $car->id }}'><input type='text' name='model' size='2' class='form-control input-year' value='{{ ucfirst($car->year_build) }}' required></form></div></td>");
 
                 if ($(clickToChange).length) {
                     $(".changeButton").prop('disabled', true);
@@ -179,9 +179,9 @@
                 var $post           = {};
                 $post.id            = {{ $car->id }}
                 $post.model         = $(this).parent().parent().find('.input-model').val();
+                $post.year_build    = $(this).parent().parent().find('.input-year').val();
                 $post.bodytype      = $(this).parent().parent().find('.input-bodytype').val();
                 $post.fuel          = $(this).parent().parent().find('.input-fuel').val();
-                $post.weight        = $(this).parent().parent().find('.input-weight').val();
                 //console.log($post.model);
                 var url             = "http://localhost:8000/api/cars/edit/" + $post.id;
                 $post._method       = "put";

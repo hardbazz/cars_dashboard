@@ -49,9 +49,10 @@ class CarsController extends Controller
     {
         $brands     = Brand::select('id', 'name')->get();
         $bodytypes  = Bodytype::select('id', 'name')->get();
+        $fuels      = Fuel::select('id', 'name')->get();
 
 //        return view('cars.create', compact('brands'))->withCar(new Car);
-        return View::make('cars.create', compact('brands', 'bodytypes'))->withCar(new Car);
+        return View::make('cars.create', compact('brands', 'bodytypes', 'fuels'))->withCar(new Car);
     }
 
     public function store(CarRequest $request)
@@ -87,9 +88,9 @@ class CarsController extends Controller
 
         $car->update([
            'model'      => $request->model,
+           'year_build' => $request->year_build,
            'bodytype'   => $request->bodytype,
-           'fuel'       => $request->fuel,
-           'weight'     => $request->weight
+           'fuel'       => $request->fuel
         ]);
 
         $car->save();
