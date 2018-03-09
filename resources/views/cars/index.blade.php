@@ -54,7 +54,7 @@
                </thead>
                 <tbody>
 
-                <tr >
+                <tr>
                     <th>Top speed</th>
                     <td id="top_speed"></td>
                 </tr>

@@ -23,11 +23,9 @@ class CarsController extends Controller
             ->get();
 //        dd($cars);
 
-//        $carDetails = Car::select('cars.*')->where('id', '=', '12')->get();
         $bodytypes  = Bodytype::select('id', 'name')->get();
         $fuels      = Fuel::select('id', 'name')->get();
 
-        //return view('cars.index', compact('cars'));
         return View::make('cars.index', compact('cars', 'bodytypes', 'fuels')); //'carDetails'
     }
 
@@ -36,7 +34,6 @@ class CarsController extends Controller
     }
 
     public function show($id) {
-//        $car = Car::findOrFail($id);
         $car = Car::with('brands')
             ->join('brands', 'brands.id', '=', 'cars.brand')
             ->join('bodytypes', 'bodytypes.id', '=', 'cars.bodytype')
@@ -73,8 +70,6 @@ class CarsController extends Controller
         $fuels      = Fuel::select('id', 'name')->get();
 
         return View::make('cars.edit', compact('car','brands', 'bodytypes', 'fuels'));
-
-        //return view('cars.edit', compact('car'));
     }
 
     public function update($id, CarRequest $request)
