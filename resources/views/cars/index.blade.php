@@ -6,10 +6,6 @@
 
     <h3>There are {{ count($cars) }} cars in your collection.</h3>
 
-    <div class="todo" style="color: red;">
-        <p>ToDo: Wanneer je op het i-tje (knop) klikt moet er een pop-up (model box) openen waarin de meeste voorkomende details van de auto in staan. Zet bijvoorbeeld in de pop-up 10 aspecten van de auto. Maak in de pop-up een knop met 'More info' en als je op die knop klikt ga je pas naar de detail pagina van de auto toe.</p>
-    </div>
-
     <table class="table table-striped">
         <thead>
         <tr>
